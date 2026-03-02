@@ -1,0 +1,1113 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400&display=swap');
+
+/* ═══════════════════ KEYFRAME ANIMATIONS ═══════════════════ */
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.6; }
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+    50%      { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%      { transform: translateY(-8px); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 5px rgba(245,175,25,0.2), 0 0 20px rgba(245,175,25,0.05); }
+    50%      { box-shadow: 0 0 15px rgba(245,175,25,0.4), 0 0 40px rgba(245,175,25,0.1); }
+}
+
+@keyframes borderGlow {
+    0%, 100% { border-color: rgba(245,175,25,0.2); }
+    50%      { border-color: rgba(245,175,25,0.5); }
+}
+
+@keyframes typingCursor {
+    0%, 100% { border-right-color: #f5af19; }
+    50%      { border-right-color: transparent; }
+}
+
+@keyframes ripple {
+    0%   { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes orbFloat1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25%      { transform: translate(30px, -20px) scale(1.1); }
+    50%      { transform: translate(-10px, -35px) scale(0.95); }
+    75%      { transform: translate(-25px, -10px) scale(1.05); }
+}
+
+@keyframes orbFloat2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25%      { transform: translate(-25px, 15px) scale(1.05); }
+    50%      { transform: translate(15px, 25px) scale(0.9); }
+    75%      { transform: translate(20px, -15px) scale(1.1); }
+}
+
+@keyframes badgePop {
+    0%   { opacity: 0; transform: scale(0.5) translateY(10px); }
+    60%  { transform: scale(1.1) translateY(-2px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ═══════════════════ MAIN LAYOUT ═══════════════════ */
+
+.stApp {
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a1040 30%, #0d0d2b 60%, #151530 100%);
+    overflow-x: hidden;
+}
+
+/* Floating background orbs */
+.bg-orbs {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.12;
+}
+.orb-1 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, #f5af19, transparent 70%);
+    top: -50px; right: -100px;
+    animation: orbFloat1 20s ease-in-out infinite;
+}
+.orb-2 {
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, #f12711, transparent 70%);
+    bottom: 10%; left: -80px;
+    animation: orbFloat2 25s ease-in-out infinite;
+}
+.orb-3 {
+    width: 250px; height: 250px;
+    background: radial-gradient(circle, #667eea, transparent 70%);
+    top: 40%; right: 5%;
+    animation: orbFloat1 18s ease-in-out infinite reverse;
+}
+
+/* Hide Streamlit chrome */
+#MainMenu, footer, header { visibility: hidden; }
+.stDeployButton { display: none; }
+
+/* ═══════════════════ HERO ═══════════════════ */
+
+.hero {
+    text-align: center;
+    padding: 2.5rem 1rem 0.5rem;
+    animation: fadeInDown 1s ease-out;
+    position: relative;
+}
+.hero-icon {
+    font-size: 3rem;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+    margin-bottom: 0.5rem;
+}
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #f5af19 0%, #f12711 40%, #f5af19 80%, #ff6b35 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 4s ease infinite;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+.hero-sub {
+    font-family: 'Inter', sans-serif;
+    color: #7a78a0;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 0.6rem;
+    animation: fadeIn 1.5s ease-out 0.3s both;
+}
+
+/* Animated divider */
+.divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #f5af19 30%, #f12711 50%, #f5af19 70%, transparent 100%);
+    background-size: 200% auto;
+    border: none;
+    margin: 1.5rem auto;
+    width: 50%;
+    border-radius: 2px;
+    animation: shimmer 3s linear infinite;
+}
+
+/* ═══════════════════ PREVIEW BANNER ═══════════════════ */
+
+@keyframes typeIn {
+    0%   { width: 0; opacity: 0; }
+    10%  { opacity: 1; }
+    100% { width: 100%; opacity: 1; }
+}
+
+@keyframes arrowBounce {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50%      { transform: translateX(5px); opacity: 1; }
+}
+
+@keyframes resultReveal {
+    0%   { opacity: 0; filter: blur(8px); transform: translateX(-8px); }
+    100% { opacity: 1; filter: blur(0);   transform: translateX(0); }
+}
+
+.preview-banner {
+    display: flex;
+    justify-content: center;
+    margin: 0.8rem 0 1.2rem;
+    animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+.preview-prompt {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 50px;
+    padding: 0.7rem 1.6rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.preview-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #f5af19;
+    background: rgba(245,175,25,0.1);
+    border: 1px solid rgba(245,175,25,0.2);
+    border-radius: 20px;
+    padding: 0.2rem 0.7rem;
+}
+.preview-typing {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.typing-text {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    color: #b0aec1;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #f5af19;
+    animation: typeIn 2s steps(12) 1s both, typingCursor 0.8s step-end infinite;
+}
+.typing-arrow {
+    font-size: 1rem;
+    color: #f5af19;
+    animation: arrowBounce 1.5s ease-in-out infinite 3s;
+    opacity: 0;
+    animation-fill-mode: both;
+}
+.typing-result {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    color: #d4d2e8;
+    font-style: italic;
+    animation: resultReveal 0.8s ease-out 3.2s both;
+}
+
+/* ═══════════════════ CARD ═══════════════════ */
+
+.card {
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 24px;
+    padding: 2.2rem 2.5rem;
+    margin: 0.5rem 0;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.05);
+    animation: fadeInUp 0.8s ease-out 0.7s both;
+    position: relative;
+    overflow: hidden;
+}
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -50%;
+    width: 200%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245,175,25,0.3), transparent);
+    animation: shimmer 4s linear infinite;
+}
+
+/* ═══════════════════ LABELS ═══════════════════ */
+
+.input-label {
+    font-family: 'Inter', sans-serif;
+    color: #c8c6d8;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* ═══════════════════ INPUT OVERRIDES ═══════════════════ */
+
+.stTextInput > div > div > input {
+    background: rgba(255,255,255,0.04) !important;
+    border: 1.5px solid rgba(255,255,255,0.08) !important;
+    border-radius: 14px !important;
+    color: #ffffff !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.1rem !important;
+    padding: 0.85rem 1.2rem !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.stTextInput > div > div > input:focus {
+    border-color: #f5af19 !important;
+    box-shadow: 0 0 0 3px rgba(245,175,25,0.1), 0 0 20px rgba(245,175,25,0.08) !important;
+    background: rgba(245,175,25,0.03) !important;
+}
+.stTextInput > div > div > input::placeholder {
+    color: #4a4860 !important;
+    font-style: italic;
+}
+
+/* ═══════════════════ SLIDER ═══════════════════ */
+
+.stSlider > div > div > div > div {
+    background: linear-gradient(90deg, #f5af19, #f12711) !important;
+}
+.stSlider label { color: #c8c6d8 !important; font-family: 'Inter', sans-serif !important; }
+
+/* ═══════════════════ BUTTONS ═══════════════════ */
+
+div[data-testid="stButton"] > button {
+    background: linear-gradient(135deg, #f5af19 0%, #f12711 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 16px !important;
+    padding: 0.9rem 2rem !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 4px 20px rgba(241,39,17,0.25), 0 0 40px rgba(245,175,25,0.08) !important;
+}
+div[data-testid="stButton"] > button:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 35px rgba(241,39,17,0.4), 0 0 60px rgba(245,175,25,0.12) !important;
+}
+div[data-testid="stButton"] > button:active {
+    transform: translateY(-1px) scale(0.98) !important;
+}
+
+/* Example seed buttons */
+.example-btn button {
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(245,175,25,0.15) !important;
+    color: #b0aec1 !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    border-radius: 12px !important;
+    padding: 0.7rem 1rem !important;
+    transition: all 0.3s ease !important;
+}
+.example-btn button:hover {
+    background: rgba(245,175,25,0.08) !important;
+    border-color: rgba(245,175,25,0.35) !important;
+    color: #f5af19 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(245,175,25,0.1) !important;
+}
+
+/* ═══════════════════ QUOTE OUTPUT ═══════════════════ */
+
+.quote-container {
+    animation: scaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quote-box {
+    background: linear-gradient(135deg, rgba(245,175,25,0.08), rgba(241,39,17,0.04));
+    border: 1px solid rgba(245,175,25,0.15);
+    border-left: 5px solid;
+    border-image: linear-gradient(to bottom, #f5af19, #f12711) 1;
+    border-radius: 0 20px 20px 0;
+    padding: 2.5rem 2.5rem 2.5rem 3rem;
+    margin: 1.5rem 0 1rem;
+    position: relative;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+.quote-box::before {
+    content: '\201C';
+    position: absolute;
+    top: -5px; left: 18px;
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: rgba(245,175,25,0.12);
+    line-height: 1;
+    pointer-events: none;
+}
+.quote-box::after {
+    content: '\201D';
+    position: absolute;
+    bottom: -30px; right: 25px;
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: rgba(245,175,25,0.08);
+    line-height: 1;
+    pointer-events: none;
+}
+
+.quote-text {
+    font-family: 'Playfair Display', serif;
+    color: #f0eef8;
+    font-size: 1.65rem;
+    line-height: 1.9;
+    font-style: italic;
+    margin: 0.5rem 0;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.3px;
+    word-spacing: 2px;
+}
+
+/* Seed highlight in quote */
+.seed-part {
+    color: #f5af19;
+    font-weight: 700;
+    font-style: italic;
+    text-shadow: 0 0 20px rgba(245,175,25,0.15);
+}
+.generated-part {
+    color: #e0ddf0;
+    font-style: italic;
+}
+
+/* ═══════════════════ ACTION BUTTONS (COPY / DOWNLOAD) ═══════════════════ */
+
+.action-row {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    margin: 1.2rem 0 0.4rem;
+    animation: fadeInUp 0.5s ease-out 0.5s both;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.6rem 1.3rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: #c8c6d8;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(245,175,25,0.18);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.action-btn:hover {
+    background: rgba(245,175,25,0.1);
+    border-color: rgba(245,175,25,0.4);
+    color: #f5af19;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 18px rgba(245,175,25,0.12);
+}
+.action-btn:active {
+    transform: translateY(0);
+}
+
+.action-btn-img {
+    background: linear-gradient(135deg, rgba(245,175,25,0.08), rgba(241,39,17,0.05));
+}
+
+.action-btn-success {
+    border-color: rgba(80,200,120,0.5) !important;
+    color: #50c878 !important;
+    background: rgba(80,200,120,0.08) !important;
+}
+
+.action-icon {
+    font-size: 0.95rem;
+}
+
+/* ═══════════════════ BADGES ═══════════════════ */
+
+.badge-row {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.badge {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 30px;
+    padding: 0.4rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: #8a88a0;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+.badge:nth-child(1) { animation: badgePop 0.5s ease-out 0.1s both; }
+.badge:nth-child(2) { animation: badgePop 0.5s ease-out 0.2s both; }
+.badge:nth-child(3) { animation: badgePop 0.5s ease-out 0.3s both; }
+.badge:nth-child(4) { animation: badgePop 0.5s ease-out 0.4s both; }
+.badge:hover {
+    background: rgba(245,175,25,0.08);
+    border-color: rgba(245,175,25,0.2);
+    color: #c8c6d8;
+}
+
+/* ═══════════════════ EXAMPLE SEEDS ═══════════════════ */
+
+.seeds-header {
+    text-align: center;
+    margin-bottom: 0.8rem;
+    animation: fadeIn 0.8s ease-out;
+}
+.seeds-header span {
+    font-family: 'Inter', sans-serif;
+    color: #5a5870;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ═══════════════════ TOP-5 CHART ═══════════════════ */
+
+@keyframes barGrow {
+    from { width: 0%; }
+}
+
+@keyframes chartFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.chart-section {
+    margin: 1.8rem 0 1rem;
+    padding: 1.8rem 2rem;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(245,175,25,0.12);
+    border-radius: 20px;
+    animation: chartFadeIn 0.6s ease-out both;
+}
+
+.chart-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.3rem;
+}
+.chart-icon {
+    font-size: 1.3rem;
+    animation: float 3s ease-in-out infinite;
+}
+.chart-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #f5af19, #f12711);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.chart-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    color: #5a5870;
+    margin: 0 0 1.4rem;
+    letter-spacing: 0.3px;
+}
+
+.chart-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.chart-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    animation: chartFadeIn 0.5s ease-out both;
+}
+
+.chart-word {
+    min-width: 100px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.88rem;
+    color: #c8c6d8;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chart-bar-track {
+    flex: 1;
+    height: 26px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 13px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.04);
+}
+
+.chart-bar-fill {
+    height: 100%;
+    border-radius: 13px;
+    animation: barGrow 0.8s ease-out both;
+    transition: width 0.4s ease;
+}
+
+.chart-bar-fill.bar-gold {
+    background: linear-gradient(90deg, #f5af19, #f7c948);
+    box-shadow: 0 0 12px rgba(245,175,25,0.35);
+}
+.chart-bar-fill.bar-silver {
+    background: linear-gradient(90deg, rgba(245,175,25,0.55), rgba(245,175,25,0.35));
+    box-shadow: 0 0 8px rgba(245,175,25,0.15);
+}
+.chart-bar-fill.bar-default {
+    background: linear-gradient(90deg, rgba(245,175,25,0.25), rgba(245,175,25,0.12));
+}
+
+.chart-pct {
+    min-width: 52px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.82rem;
+    color: #f5af19;
+    font-weight: 600;
+    text-align: right;
+}
+
+/* ═══════════════════ FOOTER ═══════════════════ */
+
+.footer {
+    text-align: center;
+    padding: 3rem 0 1.5rem;
+    animation: fadeIn 1s ease-out 1s both;
+}
+.footer p {
+    font-family: 'Inter', sans-serif;
+    color: #3a384d;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+.footer a {
+    color: #f5af19;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer a:hover { color: #f12711; }
+.footer-line {
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #f5af19, #f12711);
+    margin: 0.8rem auto;
+    border-radius: 2px;
+}
+
+/* ═══════════════════ SIDEBAR ═══════════════════ */
+
+section[data-testid="stSidebar"] {
+    background: rgba(10,10,26,0.97);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255,255,255,0.04);
+}
+section[data-testid="stSidebar"] .stMarkdown p {
+    color: #8a88a0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+section[data-testid="stSidebar"] h2 {
+    color: #f5af19;
+    font-family: 'Playfair Display', serif;
+}
+
+/* ═══════════════════ MISC ═══════════════════ */
+
+.stAlert {
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(245,175,25,0.15) !important;
+    border-radius: 14px !important;
+    color: #c8c6d8 !important;
+}
+
+.how-it-works {
+    animation: fadeInUp 0.8s ease-out 0.9s both;
+}
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+}
+.step-num {
+    min-width: 32px; height: 32px;
+    background: linear-gradient(135deg, rgba(245,175,25,0.15), rgba(241,39,17,0.1));
+    border: 1px solid rgba(245,175,25,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    color: #f5af19;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+.step-text {
+    font-family: 'Inter', sans-serif;
+    color: #8a88a0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    padding-top: 0.3rem;
+}
+
+/* ═══════════════════ RESPONSIVE — TABLET (≤ 768px) ═══════════════════ */
+
+@media screen and (max-width: 768px) {
+
+    /* Hero */
+    .hero {
+        padding: 1.8rem 0.8rem 0.4rem;
+    }
+    .hero-icon {
+        font-size: 2.4rem;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .hero-sub {
+        font-size: 0.8rem;
+        letter-spacing: 1.5px;
+    }
+
+    /* Divider */
+    .divider {
+        width: 70%;
+        margin: 1.2rem auto;
+    }
+
+    /* Preview banner */
+    .preview-prompt {
+        padding: 0.6rem 1rem;
+        gap: 0.5rem;
+        border-radius: 20px;
+    }
+    .preview-typing {
+        flex-wrap: wrap;
+        gap: 0.3rem;
+    }
+    .typing-text {
+        font-size: 0.75rem;
+    }
+    .typing-result {
+        font-size: 0.78rem;
+    }
+
+    /* Card */
+    .card {
+        padding: 1.5rem 1.2rem;
+        border-radius: 18px;
+        margin: 0.5rem 0;
+    }
+
+    /* Labels */
+    .input-label {
+        font-size: 0.78rem;
+    }
+
+    /* Input */
+    .stTextInput > div > div > input {
+        font-size: 1rem !important;
+        padding: 0.7rem 1rem !important;
+        border-radius: 12px !important;
+    }
+
+    /* Buttons */
+    div[data-testid="stButton"] > button {
+        padding: 0.8rem 1.5rem !important;
+        font-size: 1rem !important;
+        border-radius: 14px !important;
+    }
+
+    /* Quote box */
+    .quote-box {
+        padding: 1.8rem 1.5rem 1.8rem 2rem;
+        border-radius: 0 16px 16px 0;
+    }
+    .quote-box::before {
+        font-size: 3.5rem;
+        top: -2px;
+        left: 12px;
+    }
+    .quote-box::after {
+        font-size: 3.5rem;
+        bottom: -22px;
+        right: 15px;
+    }
+    .quote-text {
+        font-size: 1.35rem;
+        line-height: 1.8;
+    }
+
+    /* Badges */
+    .badge-row {
+        gap: 0.4rem;
+    }
+    .badge {
+        font-size: 0.68rem;
+        padding: 0.3rem 0.7rem;
+    }
+
+    /* Action buttons */
+    .action-row { gap: 0.6rem; }
+    .action-btn { padding: 0.55rem 1.1rem; font-size: 0.78rem; }
+
+    /* How it works */
+    .step {
+        gap: 0.7rem;
+    }
+    .step-num {
+        min-width: 28px;
+        height: 28px;
+        font-size: 0.7rem;
+    }
+    .step-text {
+        font-size: 0.8rem;
+    }
+
+    /* Chart */
+    .chart-section {
+        padding: 1.4rem 1.2rem;
+        border-radius: 16px;
+    }
+    .chart-title { font-size: 1.1rem; }
+    .chart-word { min-width: 80px; font-size: 0.82rem; }
+    .chart-bar-track { height: 22px; }
+    .chart-pct { min-width: 46px; font-size: 0.78rem; }
+
+    /* Background orbs — smaller on tablet */
+    .orb-1 { width: 280px; height: 280px; }
+    .orb-2 { width: 240px; height: 240px; }
+    .orb-3 { width: 180px; height: 180px; }
+
+    /* Footer */
+    .footer {
+        padding: 2rem 0 1rem;
+    }
+}
+
+/* ═══════════════════ RESPONSIVE — MOBILE (≤ 480px) ═══════════════════ */
+
+@media screen and (max-width: 480px) {
+
+    /* Hero */
+    .hero {
+        padding: 1.2rem 0.5rem 0.3rem;
+    }
+    .hero-icon {
+        font-size: 2rem;
+        margin-bottom: 0.3rem;
+    }
+    .hero h1 {
+        font-size: 2rem;
+        letter-spacing: 0;
+    }
+    .hero-sub {
+        font-size: 0.65rem;
+        letter-spacing: 1px;
+        margin-top: 0.4rem;
+    }
+
+    /* Divider */
+    .divider {
+        width: 80%;
+        margin: 1rem auto;
+    }
+
+    /* Preview banner — stack vertically */
+    .preview-banner {
+        margin: 0.5rem 0 0.8rem;
+    }
+    .preview-prompt {
+        flex-direction: column;
+        border-radius: 16px;
+        padding: 0.8rem 1rem;
+        gap: 0.4rem;
+        text-align: center;
+    }
+    .preview-typing {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.3rem;
+    }
+    .typing-text {
+        font-size: 0.72rem;
+        border-right: none;
+        animation: fadeIn 1.5s ease-out 0.5s both;
+    }
+    .typing-arrow {
+        transform: rotate(90deg);
+        font-size: 0.9rem;
+    }
+    .typing-result {
+        font-size: 0.72rem;
+        text-align: center;
+    }
+
+    /* Card */
+    .card {
+        padding: 1.2rem 1rem;
+        border-radius: 16px;
+    }
+
+    /* Labels */
+    .input-label {
+        font-size: 0.72rem;
+        letter-spacing: 0.5px;
+    }
+
+    /* Inputs */
+    .stTextInput > div > div > input {
+        font-size: 0.95rem !important;
+        padding: 0.65rem 0.8rem !important;
+        border-radius: 10px !important;
+    }
+
+    /* Buttons */
+    div[data-testid="stButton"] > button {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.95rem !important;
+        border-radius: 12px !important;
+        letter-spacing: 0.3px;
+    }
+
+    /* Example seed buttons */
+    .example-btn button {
+        font-size: 0.78rem !important;
+        padding: 0.55rem 0.6rem !important;
+        border-radius: 10px !important;
+    }
+
+    /* Quote box */
+    .quote-box {
+        padding: 1.5rem 1.2rem 1.5rem 1.5rem;
+        border-radius: 0 14px 14px 0;
+        border-left-width: 4px;
+        margin: 1rem 0 0.8rem;
+    }
+    .quote-box::before {
+        font-size: 2.8rem;
+        top: 0;
+        left: 8px;
+    }
+    .quote-box::after {
+        font-size: 2.8rem;
+        bottom: -18px;
+        right: 10px;
+    }
+    .quote-text {
+        font-size: 1.15rem;
+        line-height: 1.75;
+        letter-spacing: 0.1px;
+        word-spacing: 1px;
+    }
+
+    /* Badges — wrap nicely */
+    .badge-row {
+        gap: 0.3rem;
+    }
+    .badge {
+        font-size: 0.62rem;
+        padding: 0.25rem 0.6rem;
+        border-radius: 20px;
+    }
+
+    /* Action buttons */
+    .action-row { gap: 0.5rem; margin: 1rem 0 0.3rem; }
+    .action-btn { padding: 0.5rem 0.9rem; font-size: 0.74rem; border-radius: 24px; }
+    .action-icon { font-size: 0.85rem; }
+
+    /* How it works */
+    .step {
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .step-num {
+        min-width: 26px;
+        height: 26px;
+        font-size: 0.65rem;
+    }
+    .step-text {
+        font-size: 0.75rem;
+        padding-top: 0.2rem;
+    }
+
+    /* Seeds header */
+    .seeds-header span {
+        font-size: 0.7rem;
+        letter-spacing: 1.5px;
+    }
+
+    /* Chart */
+    .chart-section {
+        padding: 1.2rem 1rem;
+        border-radius: 14px;
+        margin: 1.2rem 0 0.8rem;
+    }
+    .chart-header { gap: 0.4rem; }
+    .chart-icon { font-size: 1.1rem; }
+    .chart-title { font-size: 1rem; }
+    .chart-sub { font-size: 0.7rem; margin-bottom: 1rem; }
+    .chart-row { gap: 0.5rem; }
+    .chart-word { min-width: 68px; font-size: 0.75rem; }
+    .chart-bar-track { height: 20px; border-radius: 10px; }
+    .chart-bar-fill { border-radius: 10px; }
+    .chart-pct { min-width: 42px; font-size: 0.72rem; }
+    .chart-bars { gap: 0.5rem; }
+
+    /* Background orbs — even smaller */
+    .orb-1 { width: 200px; height: 200px; filter: blur(60px); }
+    .orb-2 { width: 180px; height: 180px; filter: blur(60px); }
+    .orb-3 { width: 130px; height: 130px; filter: blur(60px); }
+
+    /* Footer */
+    .footer {
+        padding: 1.5rem 0 1rem;
+    }
+    .footer p {
+        font-size: 0.7rem;
+    }
+
+    /* Sidebar */
+    section[data-testid="stSidebar"] .stMarkdown p {
+        font-size: 0.82rem;
+    }
+}
+
+/* ═══════════════════ RESPONSIVE — SMALL MOBILE (≤ 360px) ═══════════════════ */
+
+@media screen and (max-width: 360px) {
+    .hero h1 {
+        font-size: 1.7rem;
+    }
+    .hero-sub {
+        font-size: 0.6rem;
+    }
+    .card {
+        padding: 1rem 0.8rem;
+    }
+    .quote-text {
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+    .quote-box {
+        padding: 1.2rem 1rem 1.2rem 1.2rem;
+    }
+    .badge {
+        font-size: 0.58rem;
+        padding: 0.2rem 0.5rem;
+    }
+    .action-btn { padding: 0.45rem 0.8rem; font-size: 0.7rem; }
+    .chart-bar-track { height: 18px; }
+    .chart-pct { min-width: 38px; font-size: 0.68rem; }
+}
+
+/* ═══════════════════ TOUCH DEVICE TWEAKS ═══════════════════ */
+
+@media (hover: none) and (pointer: coarse) {
+    /* Remove hover transforms on touch — they feel janky */
+    div[data-testid="stButton"] > button:hover {
+        transform: none !important;
+    }
+    .example-btn button:hover {
+        transform: none !important;
+    }
+    .action-btn:hover {
+        transform: none !important;
+    }
+    .stat-item:hover {
+        transform: none;
+    }
+
+    /* Larger tap targets */
+    div[data-testid="stButton"] > button {
+        min-height: 48px !important;
+    }
+    .example-btn button {
+        min-height: 44px !important;
+    }
+}
